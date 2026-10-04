@@ -1,13 +1,427 @@
+
+```html
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>My Website</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SCIENCE AI LAB</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, "Noto Sans JP", sans-serif;
+            background: #080b14;
+            color: white;
+            line-height: 1.7;
+        }
+
+        /* ヘッダー */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(8, 11, 20, 0.75);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: #00d9ff;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #00d9ff;
+        }
+
+        /* ヒーロー */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 20px 80px;
+            background:
+                radial-gradient(circle at 50% 40%, rgba(0,217,255,0.18), transparent 35%),
+                linear-gradient(180deg, #080b14, #0c1222);
+        }
+
+        .hero-content {
+            max-width: 900px;
+            animation: fadeUp 1s ease;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 8px 16px;
+            border: 1px solid rgba(0,217,255,0.5);
+            border-radius: 30px;
+            color: #00d9ff;
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            font-size: clamp(45px, 8vw, 90px);
+            line-height: 1.05;
+            letter-spacing: -3px;
+        }
+
+        h1 span {
+            color: #00d9ff;
+        }
+
+        .hero p {
+            margin: 25px auto;
+            max-width: 650px;
+            color: #b8c0d0;
+            font-size: 18px;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            border-radius: 30px;
+            background: #00d9ff;
+            color: #061018;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            box-shadow: 0 0 25px rgba(0,217,255,0.3);
+        }
+
+        .button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 0 40px rgba(0,217,255,0.6);
+        }
+
+        /* セクション */
+        section {
+            padding: 100px 7%;
+        }
+
+        .section-title {
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        .section-subtitle {
+            color: #8e98aa;
+            margin-bottom: 45px;
+        }
+
+        /* 動画カード */
+        .videos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: #111725;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 18px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0,217,255,0.5);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .thumbnail {
+            height: 170px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background:
+                radial-gradient(circle, rgba(0,217,255,0.25), transparent 55%),
+                #0d1424;
+            font-size: 55px;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h3 {
+            margin-bottom: 8px;
+        }
+
+        .card-content p {
+            color: #8e98aa;
+            font-size: 14px;
+        }
+
+        /* About */
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-box {
+            padding: 35px;
+            background: #111725;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .about-box h3 {
+            color: #00d9ff;
+            margin-bottom: 15px;
+        }
+
+        /* フッター */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #687386;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        /* スマホ */
+        @media (max-width: 700px) {
+
+            header {
+                padding: 15px 5%;
+            }
+
+            nav a {
+                margin-left: 10px;
+                font-size: 12px;
+            }
+
+            section {
+                padding: 75px 5%;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+        }
+
+        /* アニメーション */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-    <h1>ようこそ！</h1>
-    <p>ここは僕のホームページです。</p>
+    <!-- ヘッダー -->
+    <header>
+        <div class="logo">
+            SCIENCE <span>AI</span> LAB
+        </div>
+
+        <nav>
+            <a href="#videos">動画</a>
+            <a href="#about">このサイトについて</a>
+        </nav>
+    </header>
+
+
+    <!-- トップ -->
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="tag">
+                AI × SCIENCE
+            </div>
+
+            <h1>
+                科学を<br>
+                <span>もっと面白く。</span>
+            </h1>
+
+            <p>
+                AIを使って、難しい科学や身近な疑問を
+                わかりやすいショート動画にしています。
+            </p>
+
+            <a href="#videos" class="button">
+                最新動画を見る →
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- 動画 -->
+    <section id="videos">
+
+        <h2 class="section-title">
+            最新動画
+        </h2>
+
+        <p class="section-subtitle">
+            60秒でわかる科学
+        </p>
+
+        <div class="videos">
+
+            <div class="card">
+
+                <div class="thumbnail">
+                    🧠
+                </div>
+
+                <div class="card-content">
+                    <h3>あなたが眠くなる理由</h3>
+
+                    <p>
+                        アデノシンと睡眠の関係を
+                        わかりやすく解説。
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="thumbnail">
+                    ⚡
+                </div>
+
+                <div class="card-content">
+                    <h3>カフェインは何をしている？</h3>
+
+                    <p>
+                        眠気とカフェインの
+                        意外な関係とは？
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="thumbnail">
+                    🔬
+                </div>
+
+                <div class="card-content">
+                    <h3>身近な科学の謎</h3>
+
+                    <p>
+                        「これってどうなってるの？」
+                        を科学的に解説。
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- このサイトについて -->
+    <section id="about">
+
+        <div class="about">
+
+            <div>
+
+                <h2 class="section-title">
+                    AI × 科学
+                </h2>
+
+                <p class="section-subtitle">
+                    難しい科学を、もっと身近に。
+                </p>
+
+                <p>
+                    このサイトでは、AIを活用して
+                    科学・心理・テクノロジーなどの
+                    面白いテーマを紹介しています。
+                </p>
+
+            </div>
+
+
+            <div class="about-box">
+
+                <h3>このサイトの目的</h3>
+
+                <p>
+                    「科学って難しい」をなくすこと。
+                    短い動画で、楽しみながら
+                    科学を知るきっかけを作ります。
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- フッター -->
+    <footer>
+
+        <p>
+            © 2026 SCIENCE AI LAB
+        </p>
+
+        <p>
+            AI × Science × Creativity
+        </p>
+
+    </footer>
 
 </body>
 </html>
+```
